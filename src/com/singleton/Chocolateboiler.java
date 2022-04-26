@@ -2,17 +2,24 @@ package com.singleton;
 
 // Código retirado do livro :FREEMAN, Eric; FREEMAN, Elisabeth. Use a cabeça: padrões e projetos. 2. ed. rev. Rio de Janeiro: Alta Books, 2009. xxiv, 478 p. (Use a cabeça!). ISBN 9788576081746.
 public class Chocolateboiler {
-
+    private static Chocolateboiler singleChocolateboiler;
     private boolean empty;
     private boolean boiled;
 
     /**
      * Este código só é iniciado quando a caldeira está vazia
      */
-    public Chocolateboiler() {
+    private Chocolateboiler() {
         empty = true;
         boiled = false;
         System.out.println("Caldeira esta vazia.");
+    }
+
+    public static Chocolateboiler createChocolateBoiler() {
+        if (singleChocolateboiler == null) {
+            singleChocolateboiler = new Chocolateboiler();
+        }
+        return singleChocolateboiler;
     }
 
     /**
